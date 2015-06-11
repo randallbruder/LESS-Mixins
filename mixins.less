@@ -3,60 +3,67 @@
 	Author: Randall Bruder (with some code borrowed from CC licensed libraries)
 */
 
-.font-size(@size){
+.font-face(@fontname, @fontfile, @fontweight:normal, @fontstyle:normal) {
+  @font-face {
+	font-family: "@{fontname}";
+	src: url("@{fontfile}.eot");
+	src: url("@{fontfile}.eot?#iefix") format("embedded-opentype"),
+		 url("@{fontfile}.woff") format("woff"),
+		 url("@{fontfile}.ttf") format("truetype"),
+		 url("@{fontfile}.svg#@{fontname}") format("svg");
+	font-weight: @fontweight;
+	font-style: @fontstyle;
+  }
+}
+
+.font-size(@size, @leading:1.625){
 	@rem-value: (@size / 10);
 	@px-value: @size;
-	@lineHeight: (@size * 1.48);
+	@lineHeight: (@size * @leading);
 	line-height: @lineHeight;
 	font-size: unit(@px-value,px);
 	font-size: unit(@rem-value,rem);
 }
 
 .transition(@duration:0.2s, @ease:ease-out) {
-  -webkit-transition: all @duration @ease;
-  -moz-transition: all @duration @ease;
-  -o-transition: all @duration @ease;
-  transition: all @duration @ease;
+	-webkit-transition: all @duration @ease;
+	-moz-transition: all @duration @ease;
+	-o-transition: all @duration @ease;
+	transition: all @duration @ease;
 }
 
 .opacity(@opacity:0.5) {
-  -moz-opacity: @opacity;
-  -khtml-opacity: @opacity;
-  -webkit-opacity: @opacity;
-  opacity: @opacity;
-  @opperc: @opacity * 100;
-  -ms-filter: ~"progid:DXImageTransform.Microsoft.Alpha(opacity=@{opperc})";
-  filter: ~"alpha(opacity=@{opperc})";
+	-moz-opacity: @opacity;
+	-khtml-opacity: @opacity;
+	-webkit-opacity: @opacity;
+	opacity: @opacity;
+	@opperc: @opacity * 100;
+	-ms-filter: ~"progid:DXImageTransform.Microsoft.Alpha(opacity=@{opperc})";
+	filter: ~"alpha(opacity=@{opperc})";
 }
 
 .transform(...) {
-  -webkit-transform: @arguments;
-  -moz-transform: @arguments;
-  -o-transform: @arguments;
-  -ms-transform: @arguments;
-  transform: @arguments;
+	-webkit-transform: @arguments;
+	-moz-transform: @arguments;
+	-o-transform: @arguments;
+	-ms-transform: @arguments;
+	transform: @arguments;
 }
 .rotation(@deg:5deg){
-  .transform(rotate(@deg));
+	.transform(rotate(@deg));
 }
 .scale(@ratio:1.5){
-  .transform(scale(@ratio));
+	.transform(scale(@ratio));
 }
 .translate(@x:0, @y:0) {
-  .transform(translate(@x, @y));
+	.transform(translate(@x, @y));
 }
 
-.font-face(@fontname, @fontfile, @fontweight:normal, @fontstyle:normal) {
-  @font-face {
-	font-family: "@{fontname}";
-	src: url("@{fontfile}.eot");
-	src: url("@{fontfile}.eot?#iefix") format("embedded-opentype"),
-	   url("@{fontfile}.woff") format("woff"),
-	   url("@{fontfile}.ttf") format("truetype"),
-	   url("@{fontfile}.svg#@{fontname}") format("svg");
-	font-weight: @fontweight;
-	font-style: @fontstyle;
-  }
+.box-shadow(...) {
+	-webkit-box-shadow: @arguments;
+	-moz-box-shadow: @arguments;
+	-o-box-shadow: @arguments;
+	box-shadow: @arguments;
 }
 
 .font-smoothing(){
