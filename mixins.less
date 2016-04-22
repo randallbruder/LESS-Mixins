@@ -3,7 +3,7 @@
 	Author: Randall Bruder (with some code borrowed from CC licensed libraries)
 */
 
-.font-face(@fontname, @fontfile, @fontweight:normal, @fontstyle:normal) {
+.font-face(@fontname; @fontfile; @fontweight:normal; @fontstyle:normal) {
   @font-face {
 	font-family: "@{fontname}";
 	src: url("@{fontfile}.eot");
@@ -24,7 +24,7 @@
 	line-height: @leading;
 }
 
-.transition(@duration:0.2s, @ease:ease-out) {
+.transition(@duration:0.2s; @ease:ease-out) {
 	-webkit-transition: all @duration @ease;
 	-moz-transition: all @duration @ease;
 	-o-transition: all @duration @ease;
@@ -68,7 +68,7 @@
 .scale(@ratio:1.5){
 	.transform(scale(@ratio));
 }
-.translate(@x:0, @y:0) {
+.translate(@x:0; @y:0) {
 	.transform(translate(@x, @y));
 }
 
