@@ -1,5 +1,5 @@
 /*
-	Some less mixins
+	Some LESS mixins
 	Author: Randall Bruder (with some code borrowed from CC licensed libraries)
 */
 
@@ -16,13 +16,12 @@
   }
 }
 
-.font-size(@size, @leading:1.625){
+/* Requires: "html { font-size: 62.5% }" for rem values to be accurate */
+.font-size(@size; @leading: 26 / unit(@size)){
 	@rem-value: (@size / 10);
-	@px-value: @size;
-	@lineHeight: (@size * @leading);
-	line-height: @lineHeight;
-	font-size: unit(@px-value,px);
+	font-size: unit(@size,px);
 	font-size: unit(@rem-value,rem);
+	line-height: @leading;
 }
 
 .transition(@duration:0.2s, @ease:ease-out) {
@@ -40,6 +39,20 @@
 	@opperc: @opacity * 100;
 	-ms-filter: ~"progid:DXImageTransform.Microsoft.Alpha(opacity=@{opperc})";
 	filter: ~"alpha(opacity=@{opperc})";
+}
+
+.clearfix {
+  display: block;
+  zoom: 1;
+
+  &:after {
+	content: " ";
+	display: block;
+	font-size: 0;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+  }
 }
 
 .transform(...) {
